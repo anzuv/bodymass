@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [hei, setHei] = useState(0)
+  const [wei, setWei] = useState(0)
+  const [tot, setTot] = useState(0)
+
+function calculate (e){
+  e.preventDefault()
+  const result = wei / (hei * hei)
+  setTot(result)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div id="container">
+    <form onSubmit={calculate}>
+      <h1>Calculate body mass index</h1>
+      <div>
+      <label>Height</label>
+      <input value={hei} onChange={e => setHei(e.target.value)}/>
+      </div>
+      <div>
+        <label>Weight</label>
+        <input value={wei} onChange={e => setWei(e.target.value)}/>
+      </div>
+      <div>
+      <output>{tot}</output>
+      </div>
+      <button>Calculate</button>
+    </form>
+  </div>
   );
 }
 
